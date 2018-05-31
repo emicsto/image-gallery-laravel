@@ -10,10 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+//Route::get('/', function () {
+//    return view('app');
+//});
 
-Route::get('/', function () {
-    return view('app');
-});
+use App\Http\Controllers\ImageController;
+
+Route::get('/', 'ImageController@index')->name('home');
+Route::get('/images/create', 'ImageController@create')->name('images.create');
+Route::post('/images', 'ImageController@store');
+
 
 Auth::routes();
 

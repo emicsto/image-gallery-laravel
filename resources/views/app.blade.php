@@ -15,7 +15,7 @@
 <main role="main" class="container pt-4">
     <div class="row">
 
-        <div class="col-md-9 blog-main">
+        <div class="col-md-12 blog-main">
             @yield('content')
         </div>
 

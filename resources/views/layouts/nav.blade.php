@@ -37,7 +37,7 @@
                     <li class="align-middle pt-2">
                     <div>
                     <a href="/profile/{{Auth::user()->id}}/edit">
-                    <img src="{{asset('images/'.Auth::user()->avatar)}}" onerror="this.src='{{ asset('images/1521928850.jpg') }}'" class="rounded-circle" width="30" height="30" >
+                    {{--<img src="{{asset('imgs'.Auth::user()->avatar)}}" onerror="this.src='{{ asset('imgs') }}'" class="rounded-circle" width="30" height="30" >--}}
                     </a>
                     </div>
                     </li>
