@@ -9,6 +9,16 @@
         <img src="{{ asset('imgs/'.$image->url) }}" class="rounded img-fluid mb-4">
 
 
+        <div class="container">
+            <p class="font-weight-normal">
+                @if (count($image->tags))
+                    Tags:
+                    @foreach($image->tags as $tag)
+                        <a class="font-weight-bold" href="/posts/tags/{{ $tag->name }}">{{$tag->name}}</a> @if(!$loop->last) &nbsp;&nbsp; @endif @endforeach @endif
+
+            </p>
+        </div>
+
         <div class="list-group">
 
             <div href="#" class="card-header bg-light">
@@ -26,6 +36,7 @@
                 </div>
             @endforeach
         </div>
+
         <div class="card bg-light">
 
             <div class="card-body">

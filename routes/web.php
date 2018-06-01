@@ -22,8 +22,18 @@ Route::get('/images/create', 'ImageController@create')->name('images.create');
 Route::post('/images', 'ImageController@store');
 Route::get('/images/{id}', 'ImageController@show')->name('images.show');
 
+
 Route::post('/images/{image}/comments','CommentController@store');
+
+Route::get('/tags/create','TagController@create')->name('tags.create');
+Route::post('/tags','TagController@store');
+Route::get('/images/tags/{tag}','TagController@getImages');
+
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+

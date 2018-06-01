@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth')->except(['index', 'show']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +33,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        return view('images.create');
+        $tags = Tag::all();
+        return view('images.create', compact('tags'));
     }
 
     /**
@@ -61,6 +64,10 @@ class ImageController extends Controller
         $image->url = $filename;
         $image->user_id = auth()->user()->id;
         $image->save();
+
+        $tags = (request('tags'));
+        $image->tags()->attach($tags);
+
 
         return redirect('/');
     }

@@ -29,6 +29,18 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="body">Tags</label>
+
+                    <select class="form-control select2-multiple" name="tags[]" multiple="multiple">
+                        @foreach ($tags as $tag)
+
+                            <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+
+                        @endforeach
+                    </select>
+                </div>
+
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Add</button>
@@ -38,6 +50,8 @@
             </form>
         </div>
     </div>
+
+
 
 
     <script>

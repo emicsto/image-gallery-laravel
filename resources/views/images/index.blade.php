@@ -18,6 +18,8 @@
     </div>
 
 
-
+    {{--<div class="mx-auto pagination">--}}
+        {{--{{ $images->links() }}--}}
+    {{--</div>--}}
 
 @endsection

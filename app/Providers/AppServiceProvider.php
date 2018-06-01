@@ -15,6 +15,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
+        view()->composer('layouts.sidebar', function ($view) {
+
+            $tags = \App\Tag::has('images')->get();
+            $images = \App\Image::all();
+
+            $view->with(compact('tags', 'images'));
+        });
     }
 
     /**
