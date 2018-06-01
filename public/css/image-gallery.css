@@ -20,7 +20,7 @@ img{
     height:auto;
 }
 
-
+.list-group-item { word-wrap: break-word; }
 
 body{
     background-color: #D3D3D3;

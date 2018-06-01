@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Image;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -30,12 +36,21 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Image $image
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Image $image)
     {
-        //
+        $this->validate(request(),[
+            'body' => 'required'
+        ]);
+        Comment::create([
+            'body' => request('body'),
+            'user_id' => auth()->id(),
+            'image_id' => $image->id
+        ]);
+
+        return back();
     }
 
     /**

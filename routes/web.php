@@ -22,6 +22,7 @@ Route::get('/images/create', 'ImageController@create')->name('images.create');
 Route::post('/images', 'ImageController@store');
 Route::get('/images/{id}', 'ImageController@show')->name('images.show');
 
+Route::post('/images/{image}/comments','CommentController@store');
 
 Auth::routes();
 
