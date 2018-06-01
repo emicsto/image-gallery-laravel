@@ -20,6 +20,7 @@ use App\Http\Controllers\ImageController;
 Route::get('/', 'ImageController@index')->name('home');
 Route::get('/images/create', 'ImageController@create')->name('images.create');
 Route::post('/images', 'ImageController@store');
+Route::get('/images/{id}', 'ImageController@show')->name('images.show');
 
 
 Auth::routes();

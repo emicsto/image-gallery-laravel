@@ -3,42 +3,18 @@
 @section('content')
 
     <div class="tz-gallery row">
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top"
-                     src="https://demo.tutorialzine.com/2017/02/freebie-4-bootstrap-gallery-templates/images/park.jpg"
-                     alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
+        @foreach($images as $image)
+            <div class="col-md-3 offset-md-1">
+                <a href="/images/{{$image->id}}" class="nav-link disabled">
+                    <div class="card card-custom  ">
+                        <img class="card-img-top"
+                             src="{{asset('imgs/'.$image->url)}}"
+                             alt="Card image cap">
+                        <div class="card-footer text-center">Footer</div>
+                    </div>
+                </a>
             </div>
-        </div>
-
-        <div class="col-md-3 offset-md-1">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top"
-                     src="https://demo.tutorialzine.com/2017/02/freebie-4-bootstrap-gallery-templates/images/park.jpg"
-                     alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 offset-md-1">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top"
-                     src="https://demo.tutorialzine.com/2017/02/freebie-4-bootstrap-gallery-templates/images/park.jpg"
-                     alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                </div>
-            </div>
-        </div>
-
+        @endforeach
     </div>
 
 

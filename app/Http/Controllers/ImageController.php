@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index','show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,10 @@ class ImageController extends Controller
      */
     public function index()
     {
-        return view('images.index');
+        $images = Image::latest()->get();
+
+
+        return view('images.index', compact('images'));
     }
 
     /**
@@ -45,7 +52,7 @@ class ImageController extends Controller
             $image = request()->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $location = public_path('imgs\\' . $filename);
-            \Intervention\Image\Facades\Image::make($image)->resize(800, 400)->save($location);
+            \Intervention\Image\Facades\Image::make($image)->resize(1600, 900)->save($location);
         }
 
         $image = new Image();
@@ -64,9 +71,9 @@ class ImageController extends Controller
      * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show($id)
     {
-        //
+        return view('images.show', ['image' => Image::findOrFail($id)]);
     }
 
     /**

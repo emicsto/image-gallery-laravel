@@ -11,16 +11,16 @@
 @include('layouts.nav')
 
 {{--@include('layouts.messages')--}}
+<div class="row">
 
-<main role="main" class="container pt-4">
-    <div class="row">
-
-        <div class="col-md-12 blog-main">
-            @yield('content')
-        </div>
-
+    <div class="col-md-8 pt-4">
+        @yield('content')
     </div>
-</main>
+
+    <div class="col-md-3 offset-md-1 pt-4 pr-5 ">
+        @include('layouts.sidebar')
+    </div>
+</div>
 
 
 @include('layouts.scripts')
