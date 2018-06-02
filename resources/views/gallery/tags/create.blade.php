@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gallery.app')
 
 
 @section('content')
@@ -23,7 +23,7 @@
     </div>
 
 
-    @include('layouts.errors')
+    @include('gallery.layouts.errors')
     </form>
 
 

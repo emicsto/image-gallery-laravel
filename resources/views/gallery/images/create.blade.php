@@ -46,7 +46,7 @@
                     <button type="submit" class="btn btn-primary btn-block">Add</button>
                 </div>
 
-                @include('layouts.errors')
+                @include('gallery.layouts.errors')
             </form>
         </div>
     </div>

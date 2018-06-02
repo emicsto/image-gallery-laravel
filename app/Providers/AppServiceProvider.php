@@ -16,7 +16,17 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        view()->composer('layouts.sidebar', function ($view) {
+        view()->composer('gallery.layouts.sidebar', function ($view) {
+
+            $tags = \App\Tag::has('images')->get();
+            $images = \App\Image::all();
+            $comments = \App\Comment::all();
+            $archives=\App\Image::archives();
+
+            $view->with(compact('tags', 'images', 'archives', 'comments'));
+        });
+
+        view()->composer('gallery.layouts.sidebar', function ($view) {
 
             $tags = \App\Tag::has('images')->get();
             $images = \App\Image::all();

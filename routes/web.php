@@ -10,12 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-//Route::get('/', function () {
-//    return view('app');
-//});
-
-use App\Http\Controllers\ImageController;
 
 Route::get('/', 'ImageController@index')->name('home');
 Route::get('/images/create', 'ImageController@create')->name('images.create');
@@ -30,8 +24,18 @@ Route::post('/images/{image}/comments','CommentController@store');
 Route::get('/tags/create','TagController@create')->name('tags.create');
 Route::post('/tags','TagController@store');
 Route::get('/images/tags/{tag}','TagController@getImages');
+Route::delete('/tags/{tag}','TagController@destroy')->name('tags.destroy');
 
+Route::get('/admin','DashboardController@getImages')->name('images.get');
+Route::get('/admin/tags','DashboardController@getTags')->name('tags.get');;
+Route::get('/admin/users','DashboardController@getUsers')->name('users.get');;
+Route::get('/admin/roles','DashboardController@getRoles')->name('roles.get');;
+
+Route::delete('/users/{user}','UserController@destroy')->name('users.destroy');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::redirect('/{any}', '/', 301);

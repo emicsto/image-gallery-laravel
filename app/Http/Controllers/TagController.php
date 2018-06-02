@@ -14,13 +14,12 @@ class TagController extends Controller
 
     public function create()
     {
-        return view('tags.create');
+        return view('gallery.tags.create');
     }
 
     public function destroy()
     {
-        Tag::destroy(request()->tags);
-
+        Tag::destroy(request()->tag);
         return redirect()->back();
     }
 
@@ -40,6 +39,6 @@ class TagController extends Controller
     public function getImages(Tag $tag)
     {
         $images = $tag->images()->latest()->paginate(10);
-        return view('images.index', compact('images'));
+        return view('gallery.images.index', compact('images'));
     }
 }

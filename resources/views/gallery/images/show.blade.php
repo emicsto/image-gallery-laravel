@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gallery.app')
 
 @section('title', "- $image->title")
 
@@ -14,7 +14,7 @@
                 @if (count($image->tags))
                     Tags:
                     @foreach($image->tags as $tag)
-                        <a class="font-weight-bold" href="/posts/tags/{{ $tag->name }}">{{$tag->name}}</a> @if(!$loop->last) &nbsp;&nbsp; @endif @endforeach @endif
+                        <a class="font-weight-bold" href="/images/tags/{{ $tag->name }}">{{$tag->name}}</a> @if(!$loop->last) &nbsp;&nbsp; @endif @endforeach @endif
 
             </p>
         </div>
@@ -49,7 +49,7 @@
                         <button type="submit" class="btn btn-primary">Add comment</button>
                     </div>
                 </form>
-                @include('layouts.errors')
+                @include('gallery.layouts.errors')
             </div>
         </div>
     </div>

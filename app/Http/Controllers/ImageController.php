@@ -27,7 +27,7 @@ class ImageController extends Controller
             ->paginate(10);
 
 
-        return view('images.index', compact('images'));
+        return view('gallery.images.index', compact('images'));
     }
 
     /**
@@ -38,7 +38,7 @@ class ImageController extends Controller
     public function create()
     {
         $tags = Tag::all();
-        return view('images.create', compact('tags'));
+        return view('gallery.images.create', compact('tags'));
     }
 
     /**
@@ -84,7 +84,7 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        return view('images.show', ['image' => Image::findOrFail($id)]);
+        return view('gallery.images.show', ['image' => Image::findOrFail($id)]);
     }
 
     /**
@@ -98,7 +98,7 @@ class ImageController extends Controller
         $tags = Tag::all();
         $image = Image::findOrFail($id);
 
-        return view('images.edit', compact('tags', 'image'));
+        return view('gallery.images.edit', compact('tags', 'image'));
     }
 
     /**
@@ -129,7 +129,7 @@ class ImageController extends Controller
         $image->update(request(['title']));
         $image->tags()->sync($tags);
 
-        return redirect()->route('images.show', $image->id);
+        return redirect()->route('gallery.images.show', $image->id);
     }
 
     /**
@@ -144,6 +144,6 @@ class ImageController extends Controller
         File::delete(public_path('imgs/' . $image->url));
         $image->delete();
 
-        return redirect('/');
+        return redirect()->back();
     }
 }

@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    @include('layouts.head')
+    @include('gallery.layouts.head')
     <title>Image gallery @yield('title')</title>
 </head>
 
 <body>
 
-@include('layouts.nav')
+@include('gallery.layouts.nav')
 
 {{--@include('layouts.messages')--}}
 <div class="row">
@@ -18,12 +18,12 @@
     </div>
 
     <div class="col-md-3 offset-md-1 pt-4 pr-5 ">
-        @include('layouts.sidebar')
+        @include('gallery.layouts.sidebar')
     </div>
 </div>
 
 
-@include('layouts.scripts')
+@include('gallery.layouts.scripts')
 </body>
 
 </html>
