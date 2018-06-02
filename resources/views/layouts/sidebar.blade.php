@@ -7,8 +7,31 @@
         </div>
         <div class="card-body">
             <div class="row">
-
+                <div class="col">
+                    Title: {{$image->title}}
+                </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    Created at: {{$image->created_at}}
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="/images/{{$image->id}}/edit" class="btn btn-info btn-block" role="button">Edit</a>
+
+                </div>
+                <div class="col-sm-6">
+                    <form action="{{ route('images.destroy', $image->id) }}" method="POST">
+
+                        @method('DELETE')
+                        @csrf
+                        <button class="btn btn-danger btn-block" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 @endif
@@ -22,7 +45,14 @@
     </div>
     <div class="card-body">
         <div class="row">
-
+            <div class="col">
+                {{$images->count()}} images
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{$comments->count()}} comments
+            </div>
         </div>
     </div>
 </div>
@@ -34,6 +64,14 @@
         </div>
     </div>
     <div class="card-body ">
+        @foreach ($archives as $data)
+            <div class="row">
+                <div class="col">
+                    <a href="/?year={{$data['year']}}&month={{$data['month']}}"
+                       class="text-light sidebar-link">{{ $data['month'].' '.$data['year'] }}</a>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>
 

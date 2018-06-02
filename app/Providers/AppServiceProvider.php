@@ -20,8 +20,10 @@ class AppServiceProvider extends ServiceProvider
 
             $tags = \App\Tag::has('images')->get();
             $images = \App\Image::all();
+            $comments = \App\Comment::all();
+            $archives=\App\Image::archives();
 
-            $view->with(compact('tags', 'images'));
+            $view->with(compact('tags', 'images', 'archives', 'comments'));
         });
     }
 

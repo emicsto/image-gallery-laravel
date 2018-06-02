@@ -21,7 +21,9 @@ Route::get('/', 'ImageController@index')->name('home');
 Route::get('/images/create', 'ImageController@create')->name('images.create');
 Route::post('/images', 'ImageController@store');
 Route::get('/images/{id}', 'ImageController@show')->name('images.show');
-
+Route::delete('/images/{image}','ImageController@destroy')->name('images.destroy');
+Route::get('/images/{id}/edit','ImageController@edit')->name('images.edit');
+Route::patch('/images/{image}','ImageController@update')->name('images.update');
 
 Route::post('/images/{image}/comments','CommentController@store');
 
@@ -30,10 +32,6 @@ Route::post('/tags','TagController@store');
 Route::get('/images/tags/{tag}','TagController@getImages');
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-

@@ -17,9 +17,9 @@
         @endforeach
     </div>
 
+    <div class="mx-auto pagination" style="width: 0px;">
+        {{ $images->links() }}
+    </div>
 
-    {{--<div class="mx-auto pagination">--}}
-        {{--{{ $images->links() }}--}}
-    {{--</div>--}}
 
 @endsection

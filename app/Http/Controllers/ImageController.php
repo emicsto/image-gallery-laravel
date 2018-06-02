@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Image;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\View\View;
 
 class ImageController extends Controller
 {
@@ -20,7 +22,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        $images = Image::latest()->get();
+        $images = Image::latest()
+            ->filter(request(['month', 'year']))
+            ->paginate(10);
 
 
         return view('images.index', compact('images'));
@@ -89,9 +93,12 @@ class ImageController extends Controller
      * @param  \App\Image $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit($id)
     {
-        //
+        $tags = Tag::all();
+        $image = Image::findOrFail($id);
+
+        return view('images.edit', compact('tags', 'image'));
     }
 
     /**
@@ -103,7 +110,26 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        $this->validate(request(), [
+            'title' => 'required',
+        ]);
+
+        $tags = (request('tags'));
+
+        if (request()->hasFile('image')) {
+            $photo = request()->file('image');
+            $filename = time() . '.' . $photo->getClientOriginalExtension();
+            $location = public_path('imgs\\' . $filename);
+            \Intervention\Image\Facades\Image::make($photo)->resize(1600, 900)->save($location);
+            $oldFilename = $image->url;
+            $image->url = $filename;
+            File::delete(public_path('imgs/' . $oldFilename));
+        }
+
+        $image->update(request(['title']));
+        $image->tags()->sync($tags);
+
+        return redirect()->route('images.show', $image->id);
     }
 
     /**
@@ -111,9 +137,13 @@ class ImageController extends Controller
      *
      * @param  \App\Image $image
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Image $image)
     {
-        //
+        File::delete(public_path('imgs/' . $image->url));
+        $image->delete();
+
+        return redirect('/');
     }
 }
