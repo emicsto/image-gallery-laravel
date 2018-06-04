@@ -14,7 +14,9 @@
                 @if (count($image->tags))
                     Tags:
                     @foreach($image->tags as $tag)
-                        <a class="font-weight-bold" href="/images/tags/{{ $tag->name }}">{{$tag->name}}</a> @if(!$loop->last) &nbsp;&nbsp; @endif @endforeach @endif
+                        <a class="font-weight-bold"
+                           href="/images/tags/{{ $tag->name }}">{{$tag->name}}</a> @if(!$loop->last) &nbsp;
+                        &nbsp; @endif @endforeach @endif
 
             </p>
         </div>
@@ -30,7 +32,24 @@
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">{{$comment->user->name}}</h5>
-                        <small class="text-muted">{{$comment->created_at}}</small>
+                        <div class="d-flex w-100 justify-content-xl-end flex-wrap">
+                            @can('update',$comment)
+                                <div class="mr-2">
+                                    <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
+
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-outline-danger btn-sm nowrap " type="submit">Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            @endcan
+
+                            <div>
+                                <small class="text-muted">{{$comment->created_at}}</small>
+                            </div>
+                        </div>
+
                     </div>
                     <p class="mb-1">{{$comment->body}}</p>
                 </div>

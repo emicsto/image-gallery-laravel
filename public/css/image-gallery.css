@@ -26,3 +26,6 @@ body{
     background-color: #D3D3D3;
 }
 
+.custom-file-label {
+    overflow: hidden;
+}

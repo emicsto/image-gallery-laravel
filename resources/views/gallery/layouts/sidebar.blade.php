@@ -8,6 +8,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
+                    Author: {{$image->user->name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     Title: {{$image->title}}
                 </div>
             </div>
@@ -16,22 +21,23 @@
                     Created at: {{$image->created_at}}
                 </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-6">
-                    <a href="/images/{{$image->id}}/edit" class="btn btn-info btn-block" role="button">Edit</a>
+            @can('manage', $image)
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="/images/{{$image->id}}/edit" class="btn btn-info btn-block" role="button">Edit</a>
 
+                    </div>
+                    <div class="col-sm-6">
+                        <form action="{{ route('images.destroy', $image->id) }}" method="POST">
+
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger btn-block" type="submit">Delete</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="col-sm-6">
-                    <form action="{{ route('images.destroy', $image->id) }}" method="POST">
-
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn btn-danger btn-block" type="submit">Delete</button>
-                    </form>
-                </div>
-            </div>
-
+            @endcan
         </div>
     </div>
 @endif

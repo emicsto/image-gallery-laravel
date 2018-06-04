@@ -29,12 +29,6 @@ Tip 2: you can also add an image using data-image tag
                     <p>Tags</p>
                 </a>
             </li>
-            <li class="nav-item {{ Route::is('roles.get') ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/roles">
-                    <i class="material-icons">library_books</i>
-                    <p>Roles</p>
-                </a>
-            </li>
             <li class="nav-item active-pro">
                 <a class="nav-link" href="/">
                     <i class="material-icons">home</i>

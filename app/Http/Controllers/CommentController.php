@@ -50,6 +50,10 @@ class CommentController extends Controller
             'image_id' => $image->id
         ]);
 
+        $user = request()->user();
+        if (!$user->hasRole('comment author')) {
+            $user->assignRole('comment author');
+        }
         return back();
     }
 
@@ -93,8 +97,11 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy()
     {
-        //
+        request()->user()->can('update', request()->comment);
+
+        Comment::destroy(request()->comment);
+        return redirect()->back();
     }
 }

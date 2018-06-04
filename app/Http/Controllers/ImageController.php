@@ -26,7 +26,6 @@ class ImageController extends Controller
             ->filter(request(['month', 'year']))
             ->paginate(10);
 
-
         return view('gallery.images.index', compact('images'));
     }
 
@@ -72,6 +71,12 @@ class ImageController extends Controller
         $tags = (request('tags'));
         $image->tags()->attach($tags);
 
+                $user = $request->user();
+
+
+        if(! $user->hasRole('image author')){
+            $user->assignRole('image author');
+        }
 
         return redirect('/');
     }
@@ -129,7 +134,7 @@ class ImageController extends Controller
         $image->update(request(['title']));
         $image->tags()->sync($tags);
 
-        return redirect()->route('gallery.images.show', $image->id);
+        return redirect()->route('images.show', $image->id);
     }
 
     /**
@@ -144,6 +149,6 @@ class ImageController extends Controller
         File::delete(public_path('imgs/' . $image->url));
         $image->delete();
 
-        return redirect()->back();
+        return redirect('/');
     }
 }

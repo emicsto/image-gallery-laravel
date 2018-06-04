@@ -1,4 +1,4 @@
-@extends('app')
+@extends('gallery.app')
 
 @section('title', ' - add image')
 
@@ -18,6 +18,7 @@
                     <label for="title">Title</label>
                     <input type="text" class="form-control" id="title" name="title">
                 </div>
+
 
                 <div class="form-group">
                     <label for="image">Image</label>
@@ -51,14 +52,20 @@
         </div>
     </div>
 
-
-
-
     <script>
-        /* show file value after file select */
-        $('.custom-file-input').on('change', function () {
-            $(this).next('.custom-file-label').addClass("selected").html($(this).val());
-        })
+
+        $("input[type=file]").change(function () {
+            var fieldVal = $(this).val();
+
+            // Change the node's value by removing the fake path (Chrome)
+            fieldVal = fieldVal.replace("C:\\fakepath\\", "");
+
+            if (fieldVal != undefined || fieldVal != "") {
+                $(this).next(".custom-file-label").attr('data-content', fieldVal);
+                $(this).next(".custom-file-label").text(fieldVal);
+            }
+
+        });
     </script>
 
 
