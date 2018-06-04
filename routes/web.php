@@ -29,6 +29,10 @@ Route::group(['middleware' => ['role:user|image author|admin']], function () {
     Route::post('/images/{image}/comments', 'CommentController@store');
     Route::get('/tags/create', 'TagController@create')->name('tags.create');
     Route::post('/tags', 'TagController@store');
+
+    Route::get('profile/{user}/edit','UserController@edit');
+    Route::patch('profile/{user}','UserController@update')->name('users.update');
+
 });
 
 Route::group(['middleware' => ['can:manage,image']], function () {

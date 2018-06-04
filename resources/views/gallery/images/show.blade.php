@@ -10,11 +10,11 @@
 
 
         <div class="container">
-            <p class="font-weight-normal">
+            <p class="font-weight-bold mr-5">
                 @if (count($image->tags))
-                    Tags:
+                    Tags: &nbsp;&nbsp;
                     @foreach($image->tags as $tag)
-                        <a class="font-weight-bold"
+                        <a class="font-weight-normal text-secondary"
                            href="/images/tags/{{ $tag->name }}">{{$tag->name}}</a> @if(!$loop->last) &nbsp;
                         &nbsp; @endif @endforeach @endif
 

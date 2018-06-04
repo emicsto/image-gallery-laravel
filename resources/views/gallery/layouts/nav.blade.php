@@ -1,5 +1,6 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar navbar-dark navbar-color-on-scroll navbar-expand-lg bg-dark navbar-expand-lg">
+        <div class="container">
         <a class="navbar-brand" href="/">Image gallery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,16 +35,10 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li class="align-middle pt-2">
-                    <div>
-                    <a href="/profile/{{Auth::user()->id}}/edit">
-                    {{--<img src="{{asset('imgs'.Auth::user()->avatar)}}" onerror="this.src='{{ asset('imgs') }}'" class="rounded-circle" width="30" height="30" >--}}
-                    </a>
-                    </div>
-                    </li>
+
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle " href="#" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
@@ -64,6 +59,13 @@
                             </form>
                         </div>
                     </li>
+                    <li class="align-middle pl-2 pt-2">
+                        <div>
+                            <a href="/profile/{{Auth::user()->id}}/edit">
+                                <img src="{{asset('imgs/'.Auth::user()->avatar)}}" onerror="this.src='{{ asset('imgs') }}'" class="rounded-circle" width="30" height="30" >
+                            </a>
+                        </div>
+                    </li>
 
                 @endguest
             </ul>
@@ -71,5 +73,8 @@
 
 
         </div>
+    </div>
     </nav>
 </header>
+
+

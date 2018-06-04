@@ -10,7 +10,7 @@
                         <img class="card-img-top"
                              src="{{asset('imgs/'.$image->url)}}"
                              alt="Card image cap">
-                        <div class="card-footer text-center">Footer</div>
+                        <div class="card-footer text-center">{{$image->title}}</div>
                     </div>
                 </a>
             </div>

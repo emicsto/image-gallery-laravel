@@ -6,7 +6,7 @@
     <title>Image gallery @yield('title')</title>
 </head>
 
-<body>
+<body class="sideba-collapse">
 
 @include('gallery.layouts.nav')
 

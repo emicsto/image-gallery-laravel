@@ -24,7 +24,8 @@ class ImageController extends Controller
     {
         $images = Image::latest()
             ->filter(request(['month', 'year']))
-            ->paginate(10);
+            ->paginate(9);
+//        return view('gallery.images.i', compact('images'));
 
         return view('gallery.images.index', compact('images'));
     }

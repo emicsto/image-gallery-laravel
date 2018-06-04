@@ -1,7 +1,6 @@
 <!--   Core JS Files   -->
 <script src="{{asset('js/core/jquery.min.js')}}"></script>
 <script src="{{asset('js/core/popper.min.js')}}"></script>
-<script src="{{asset('js/bootstrap-material-design.min.js')}}"></script>
 
 <!--   Core JS Files   -->
 <script src="{{asset('js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
@@ -13,4 +12,6 @@
 <script src="{{asset('js/plugins/bootstrap-notify.js')}}"></script>
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="{{asset('js/material-dashboard.js?v=2.0.0')}}"></script>
+
+
 

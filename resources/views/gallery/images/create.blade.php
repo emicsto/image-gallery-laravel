@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-6 offset-md-3" >
+        <div class="col-md-8 offset-md-2">
             <h1>Add image</h1>
 
             <hr>
@@ -30,6 +30,7 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <label for="body">Tags</label>
 
@@ -52,6 +53,12 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        $('.select2-multiple').select2();
+    </script>
+
     <script>
 
         $("input[type=file]").change(function () {
@@ -67,6 +74,5 @@
 
         });
     </script>
-
 
 @endsection
