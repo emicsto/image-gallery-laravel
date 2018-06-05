@@ -28,15 +28,13 @@
                                         <td>{{$tag->images->count()}}</td>
                                         <td>
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <a href="/tags/{{$tag->id}}/edit" class="btn btn-info btn-block" role="button">Edit</a>
-                                                </div>
+
                                                 <div class="col-md-6">
                                                         <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">
 
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button class="btn btn-danger btn-block" type="submit">Delete</button>
+                                                            <button class="btn btn-danger btn-block delete" type="submit">Delete</button>
                                                         </form>
 
                                                 </div>

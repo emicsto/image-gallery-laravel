@@ -7,6 +7,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
+<meta name="_token" content="{{ csrf_token() }}"/>
 
 <!-- Custom styles for this template -->
 {{--<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">--}}
@@ -32,5 +33,16 @@
 <!--     Fonts and icons     -->
 <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
 
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+        $(".delete").click(function(e){
+            if(!confirm('Are you sure?')){
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
 
 

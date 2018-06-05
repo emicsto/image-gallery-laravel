@@ -51,5 +51,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/images', 'ImageController@searchImage')->name('image.search');
+
 
 Route::redirect('/{any}', '/', 301);

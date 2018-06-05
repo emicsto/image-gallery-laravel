@@ -24,6 +24,7 @@ class ImageController extends Controller
     {
         $images = Image::latest()
             ->filter(request(['month', 'year']))
+            ->que(request([('title')]))
             ->paginate(9);
 //        return view('gallery.images.i', compact('images'));
 
@@ -78,6 +79,8 @@ class ImageController extends Controller
         if(! $user->hasRole('image author')){
             $user->assignRole('image author');
         }
+
+        session()->flash('message', 'Image has been added');
 
         return redirect('/');
     }
@@ -135,6 +138,8 @@ class ImageController extends Controller
         $image->update(request(['title']));
         $image->tags()->sync($tags);
 
+        session()->flash('message', 'Image has been updated');
+
         return redirect()->route('images.show', $image->id);
     }
 
@@ -149,7 +154,17 @@ class ImageController extends Controller
     {
         File::delete(public_path('imgs/' . $image->url));
         $image->delete();
+        session()->flash('message', 'Image has been deleted');
 
         return redirect('/');
+    }
+
+
+    public function searchImage()
+    {
+        $images = Image::where('title','like', '%'.request('title').'%')
+            ->paginate(9);
+
+        return view('gallery.images.index', compact('images'));
     }
 }

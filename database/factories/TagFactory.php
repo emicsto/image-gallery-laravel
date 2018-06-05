@@ -1,5 +1,6 @@
 <?php
 
+use App\Image;
 use Faker\Generator as Faker;
 
 /*
@@ -15,6 +16,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Tag::class, function (Faker $faker) {
     return [
-        'name' => $faker->word,
+        'name' => $faker->text($maxNbChars = 15),
     ];
 });

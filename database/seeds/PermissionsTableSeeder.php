@@ -1,5 +1,8 @@
 <?php
 
+use App\Tag;
+use App\User;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Seeder;
@@ -62,7 +65,22 @@ class PermissionsTableSeeder extends Seeder
         $user2->assignRole($role2);
 
 
-        factory('App\Tag',10)->create();
+        factory('App\User',20)->create();
+        factory('App\Image',40)->create();
+        factory('App\Tag',9)->create();
+        factory('App\Comment',100)->create();
+
+for($i=1;$i<40;$i++){
+    for($j=1;$j<10;$j++) {
+        DB::table('image_tag')->insert(
+            [
+                'tag_id' => $j,
+                'image_id' => $i,
+            ]
+        );
+    }
+}
+
 
     }
 }

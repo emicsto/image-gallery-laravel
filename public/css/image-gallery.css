@@ -40,3 +40,17 @@ ul.pagination li a.active {
 }
 
 ul.pagination li a:hover:not(.active) {background-color: #ddd;}
+
+#flash-message {
+    bottom: 20px;
+    position: fixed;
+    right: 20px;
+    z-index: 10;
+    animation: flash-message 7s forwards;
+}
+
+@keyframes flash-message {
+    0%   {opacity: 1;}
+    80%   {opacity: 0.8;}
+    100% {opacity: 0; display:none;}
+}

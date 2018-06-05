@@ -14,8 +14,14 @@
 <link rel="stylesheet" href="{{asset('css/material-dashboard.css')}}">
 
 
-
-<!-- Documentation extras -->
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<link href="../assets/assets-for-demo/demo.css" rel="stylesheet" />
-<!-- iframe removal -->
+<script language="JavaScript" type="text/javascript">
+    $(document).ready(function(){
+        $(".delete").click(function(e){
+            if(!confirm('Are you sure?')){
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        });
+    });
+</script>

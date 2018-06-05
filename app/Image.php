@@ -41,4 +41,14 @@ class Image extends Model
             }
         }
     }
+
+    public function scopeQue($query, $filters)
+    {
+        if (!empty($filters)) {
+            if($title = $filters['title']){
+                $query->where('title','like', '%'.$title.'%');
+            }
+        }
+    }
+
 }

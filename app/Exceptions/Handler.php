@@ -47,7 +47,8 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
-            dd('nop');
+            session()->flash('message', 'You have no permission to perform this action');
+            return back();
         }
         return parent::render($request, $exception);
     }

@@ -40,7 +40,7 @@
 
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button class="btn btn-danger btn-block" type="submit">Delete</button>
+                                                            <button class="btn btn-danger btn-block delete" type="submit">Delete</button>
                                                         </form>
 
                                                 </div>

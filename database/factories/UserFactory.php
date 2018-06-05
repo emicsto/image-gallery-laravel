@@ -1,5 +1,7 @@
 <?php
 
+use App\Image;
+use App\User;
 use Faker\Generator as Faker;
 
 /*
@@ -21,3 +23,20 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Image::class, function (Faker $faker) {
+    return [
+        'title' => $faker->text($maxNbChars = 15)  ,
+        'url' => rand(1,10).'.jpg',
+        'user_id' => User::all()->random()->id,
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker $faker) {
+    return [
+        'body' => $faker->text($maxNbChars = 200)  ,
+        'user_id' => User::all()->random()->id,
+        'image_id' => Image::all()->random()->id,
+    ];
+});
+

@@ -20,6 +20,8 @@ class TagController extends Controller
     public function destroy()
     {
         Tag::destroy(request()->tag);
+        session()->flash('message', 'Tag has been deleted');
+
         return redirect()->back();
     }
 
@@ -32,13 +34,14 @@ class TagController extends Controller
         $tag = new Tag;
         $tag->name=request('name');
         $tag->save();
+        session()->flash('message', 'Tag has been added');
 
         return redirect('/');
     }
 
     public function getImages(Tag $tag)
     {
-        $images = $tag->images()->latest()->paginate(10);
+        $images = $tag->images()->latest()->paginate(9);
         return view('gallery.images.index', compact('images'));
     }
 }

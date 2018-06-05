@@ -10,7 +10,8 @@
 
 @include('gallery.layouts.nav')
 
-{{--@include('layouts.messages')--}}
+@include('gallery.layouts.messages')
+
 <div class="row">
 
     <div class="col-md-8 pt-4">

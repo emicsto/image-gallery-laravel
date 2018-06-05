@@ -13,6 +13,7 @@
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
                                 <thead class="text-warning">
+                                <th>#</th>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>No. of images</th>
@@ -40,7 +41,7 @@
 
                                                         @method('DELETE')
                                                         @csrf
-                                                        <button class="btn btn-danger btn-block" type="submit">Delete
+                                                        <button class="btn btn-danger btn-block delete" type="submit">Delete
                                                         </button>
                                                     </form>
 
@@ -65,7 +66,11 @@
 
 
 
-
+    <script type="text/javascript">
+        $("#checkAll").click(function() {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+    </script>
 
 
 

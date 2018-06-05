@@ -44,7 +44,7 @@ class CommentController extends Controller
         $this->validate(request(),[
             'body' => 'required'
         ]);
-        Comment::create([
+        $comment = Comment::create([
             'body' => request('body'),
             'user_id' => auth()->id(),
             'image_id' => $image->id
@@ -54,6 +54,8 @@ class CommentController extends Controller
         if (!$user->hasRole('comment author')) {
             $user->assignRole('comment author');
         }
+        session()->flash('message', 'Comment has been added');
+
         return back();
     }
 
@@ -99,9 +101,13 @@ class CommentController extends Controller
      */
     public function destroy()
     {
-        request()->user()->can('update', request()->comment);
+        $comment = request()->comment;
+        request()->user()->can('update', $comment);
 
-        Comment::destroy(request()->comment);
+        Comment::destroy($comment);
+
+        session()->flash('message', 'Comment has been deleted');
+
         return redirect()->back();
     }
 }
